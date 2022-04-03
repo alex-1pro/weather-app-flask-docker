@@ -3,14 +3,19 @@ import botocore
 import requests
 from pprint import pprint
 from boto3.dynamodb.conditions import Key, Attr
+from dotenv import load_dotenv
+import os
 
 # path = '/home/alex/Downloads'
 #
-AWS_S3_CREDS = {
-    "aws_access_key_id": "AKIAZ4MRP27HURL2X4ZV",  # os.getenv("AWS_ACCESS_KEY")
-    "aws_secret_access_key": "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"  # os.getenv("AWS_SECRET_KEY")
-}
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 
+
+AWS_S3_CREDS = {
+        "aws_access_key_id": AWS_ACCESS_KEY_ID,  # os.getenv("AWS_ACCESS_KEY")
+        "aws_secret_access_key": AWS_SECRET_ACCESS_KEY # os.getenv("AWS_SECRET_KEY")
+    }
 sess = boto3.Session(region_name='us-east-1')
 ddb = sess.client('dynamodb', **AWS_S3_CREDS)
 

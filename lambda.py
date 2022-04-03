@@ -2,6 +2,8 @@ import datetime
 
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
+from dotenv import load_dotenv
+import os
 
 MAX_BACKUPS = 3
 
