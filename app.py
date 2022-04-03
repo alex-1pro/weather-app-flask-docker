@@ -5,9 +5,17 @@ from datetime import datetime
 from datetime import timedelta
 import calendar
 import dynodb
+from dotenv import load_dotenv
+import os
 
-KYE_N = "77d7d62a02bf7662f5406c63c27ee0e2&units=metric"
-KYE_A = "b39af7bbff0f462a017788d2efdde3d3"
+load_dotenv()
+
+#keys in .env file
+KYE_N = os.getenv("KYE_N ")
+KYE_A = os.getenv("KYE_A")
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+
 app = Flask(__name__)
 weather_dict = {}
 
@@ -40,8 +48,8 @@ def get_dict_7_days(lat, lon):
 def download():
     # return send_file("/home/alex/Downloads/sky.jpg", as_attachment=True)
     AWS_S3_CREDS = {
-        "aws_access_key_id": "AKIAZ4MRP27HURL2X4ZV",  # os.getenv("AWS_ACCESS_KEY")
-        "aws_secret_access_key": "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"  # os.getenv("AWS_SECRET_KEY")
+        "aws_access_key_id": AWS_ACCESS_KEY_ID,  # os.getenv("AWS_ACCESS_KEY")
+        "aws_secret_access_key": AWS_SECRET_ACCESS_KEY # os.getenv("AWS_SECRET_KEY")
     }
     s3_client = boto3.client('s3', **AWS_S3_CREDS)
 
